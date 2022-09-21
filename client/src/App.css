@@ -1,0 +1,61 @@
+html {
+	margin: 0px;
+}
+
+body {
+	padding: 30px;
+	margin: 0px;
+}
+
+.column {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+	align-items: center;
+}
+
+.column-container {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-evenly;
+	margin-bottom: 10px;
+}
+
+.chart {
+	height: 500px;
+	width: 500px;
+	margin: auto;
+}
+
+.description {
+	width: 350px;
+	margin: auto;
+	margin-bottom: 10px;
+}
+
+form {
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+}
+
+.form-container {
+	width: 350px;
+	margin: auto;
+	margin-top: 20px;
+}
+
+h3 {
+	margin-bottom: 5px;
+	text-decoration: underline;
+}
+
+input {
+	width: 40px;
+}
+
+ul {
+	display: table;
+	margin: 0 auto;
+}
