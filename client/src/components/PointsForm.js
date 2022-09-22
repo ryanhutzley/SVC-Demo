@@ -1,4 +1,12 @@
-function PointsForm({ modelData, addField, removeField, handleSubmit, handleChange }) {
+function PointsForm({
+	modelData,
+	addField,
+	removeField,
+	handleSubmit,
+	handleChange,
+	errorStates,
+	errorMsgs,
+}) {
 	return (
 		<div className="form-container">
 			<form>
@@ -14,6 +22,7 @@ function PointsForm({ modelData, addField, removeField, handleSubmit, handleChan
 										type="number"
 										value={modelData.xVals[idx]}
 										onChange={(e) => handleChange(e, idx)}
+										className={errorStates["xVals"].includes(idx) ? "input-error" : null}
 									/>
 									,
 									<input
@@ -21,6 +30,7 @@ function PointsForm({ modelData, addField, removeField, handleSubmit, handleChan
 										type="number"
 										value={modelData.yVals[idx]}
 										onChange={(e) => handleChange(e, idx)}
+										className={errorStates["yVals"].includes(idx) ? "input-error" : null}
 									/>
 									)
 								</div>
@@ -28,13 +38,14 @@ function PointsForm({ modelData, addField, removeField, handleSubmit, handleChan
 						})}
 					</div>
 					<div className="column">
-						<label for="labels">Label (0 or 1)</label>
+						<label for="labels">Label</label>
 						{modelData.labels.map((label, idx) => (
 							<input
 								key={idx}
+								className="checkbox"
 								name="labels"
-								type="number"
-								value={label}
+								type="checkbox"
+								checked={label === 1}
 								onChange={(e) => handleChange(e, idx)}
 							/>
 						))}
@@ -48,6 +59,17 @@ function PointsForm({ modelData, addField, removeField, handleSubmit, handleChan
 						))}
 					</div>
 				</div>
+				{errorMsgs.length > 0 && (
+					<div>
+						{errorMsgs.map((msg, idx) => {
+							return (
+								<p key={idx} className="error">
+									{msg}
+								</p>
+							);
+						})}
+					</div>
+				)}
 				<button type="button" onClick={() => addField()}>
 					Add Fields
 				</button>
