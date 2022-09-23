@@ -66,7 +66,7 @@ function PointsForm({
 				</div>
 			)}
 			<button type="button" onClick={() => addField()}>
-				Add Fields
+				Add Points
 			</button>
 			<button type="submit" onClick={(e) => handleSubmit(e)}>
 				Submit

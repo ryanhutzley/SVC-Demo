@@ -1,70 +1,83 @@
-# Getting Started with Create React App
+# SVC-Demo
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project enables users to play around with a linear SVM (Support Vector Machine). Users provide labeled and unlabeled data points that are rendered on a Cartesian plane (powered by React & Chart.js). This data is served to a sklearn SVC model on the backend (FastAPI) that returns metrics around SVM performance + data necessary to render the decision boundary and margins. The purpose of this demo is to help demystify SVMs ✨
 
-## Available Scripts
+# Tech Stack
 
-In the project directory, you can run:
+Frontend: React, Chart.js, react-chart-js-2 <br/>
+Backend: FastAPI, scikit-learn
 
-### `npm start`
+# Running the Project Locally
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Requirements
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- `npm` v8 or higher
+- `Python` v3.8.13 or higher
+- `node` v16 or higher
 
-### `npm test`
+# Setup
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Fork and clone this repository
 
-### `npm run build`
+## Frontend
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+From parent directory...
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+```
+cd client
+npm install
+npm start
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+This will spin up the React frontend on `http://localhost:3000`
 
-### `npm run eject`
+## Backend
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+From parent directory...
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+```
+cd backend
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+Create python virtual environment
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+- For users with `conda` distribution:
+  - `conda create --name <venv> python=3.8`
+  - `conda deactivate`
+  - `conda activate <venv>`
+- For other distributions:
+  - `pip install virtualenv` (if not already installed)
+  - `python3 -m venv <virtual-environment-name>`
+  - `source env/bin/activate`
 
-## Learn More
+Next, install the necessary python packages in your virtual environment
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+```
+pip install fastapi
+pip install uvicorn
+pip install scikit-learn
+```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+And finally...
 
-### Code Splitting
+```
+uvicorn server:app --reload
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+This starts the server on `http://localhost:8000`
 
-### Analyzing the Bundle Size
+# Using the app
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+1. Choose x and y values for at least two points. (The model requires at least 1 labeled and 1 unlabeled point to generate a response)
+2. Hit `Submit`!
+3. Be AMAZED! 😮
+4. Take a look at 1) the chart -- the legend describes what the different colors and shadings represent (SV = [Support Vector](https://towardsdatascience.com/support-vector-machine-introduction-to-machine-learning-algorithms-934a444fca47#:~:text=Support%20vectors%20are%20data%20points,help%20us%20build%20our%20SVM.)), and 2) the `SVC Metrics` section -- this contains "Fit Status", "Model Accuracy", and "Margin Value" information.
+5. Play around with the demo! (add points, remove points, or change points to see how the SVM responds)
 
-### Making a Progressive Web App
+# Resources & Credits
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+If you want to learn more about SVMs, please check out Serafeim Loukas' ["Support Vector Machines (SVM) clearly explained: A python tutorial for classification problems with 3D plots"](https://towardsdatascience.com/support-vector-machines-svm-clearly-explained-a-python-tutorial-for-classification-problems-29c539f3ad8) or Alex Kataev's ["SVM Classification with sklearn.svm.SVC: How To Plot A Decision Boundary With Margins in 2D Space"](https://medium.com/geekculture/svm-classification-with-sklearn-svm-svc-how-to-plot-a-decision-boundary-with-margins-in-2d-space-7232cb3962c0) -- both of these articles helped make SVMs more intuitive for me, and I hope they do the same for you!
 
-### Advanced Configuration
+# Contact
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+If you have feedback or are interested in collaborating, I'd love to connect! My email is <ryanhutzley@gmail.com>. Or if you prefer LinkedIn, drop me a [DM](https://www.linkedin.com/in/ryan-hutzley-0246a8169/) 🙂

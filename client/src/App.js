@@ -1,8 +1,7 @@
 import React from "react";
-import { useState, useMemo } from "react";
+import { useState } from "react";
 import {
 	Chart as ChartJS,
-	CategoryScale,
 	LinearScale,
 	PointElement,
 	LineElement,
@@ -56,7 +55,7 @@ const options = {
 
 const errorMessageTypes = {
 	missingNumbers: "Missing number(s) for point values",
-	labelRequirement: "Model requires at least 1 labeld and 1 unlabeld point",
+	labelRequirement: "Model requires at least 1 labeled and 1 unlabeled point",
 	invalidPointsforSVC: "Cannot calculate decision boundary with provided points",
 };
 
@@ -140,7 +139,7 @@ function App() {
 			}).then((res) => {
 				if (res.ok) {
 					res.json().then((data) => {
-						console.log(data);
+						// console.log(data);
 						setSVCResults({
 							...SVCresults,
 							fitStatus: data.fitStatus,
@@ -238,7 +237,7 @@ function App() {
 
 	const plugins = [legendMargin];
 
-	console.log(modelData);
+	// console.log(modelData);
 
 	return (
 		<div className="content-wrap">
