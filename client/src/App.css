@@ -1,6 +1,5 @@
-body {
-	margin: 0px;
-	min-height: 100vh;
+button {
+	font-family: inherit;
 }
 
 .column {
@@ -14,15 +13,19 @@ body {
 	display: flex;
 	flex-direction: row;
 	justify-content: space-evenly;
+	margin-bottom: 10px;
 }
 
-.chart {
-	height: 500px;
-	width: 500px;
+.chart-container {
+	height: 600px;
+	width: 600px;
 	margin: auto;
+	margin-bottom: 40px;
 	padding: 30px;
-	border: 5px solid red;
-	border-radius: 10px;
+	border: 5px solid rgba(9, 4, 70, 1);
+	border-radius: 20px;
+	background: #ffffff;
+	box-shadow: 20px 20px 60px #d9d9d9, -20px -20px 60px #ffffff;
 }
 
 .checkbox {
@@ -33,27 +36,28 @@ body {
 .description {
 	width: 350px;
 	margin: auto;
-	margin-bottom: 10px;
-	margin-top: 20px;
+	margin-bottom: 17px;
 }
 
 .error {
 	color: red;
+	padding-bottom: 10px;
 }
 
 form {
-	width: 100%;
+	width: 350px;
 	display: flex;
 	flex-direction: column;
 	text-align: center;
 	gap: 10px;
+	margin: auto;
 }
 
-.form-container {
+/* .form-container {
 	width: 350px;
 	margin: auto;
 	margin-top: 20px;
-}
+} */
 
 h3 {
 	margin: 0;
@@ -72,13 +76,11 @@ input {
 }
 
 p {
-	margin: 0;
 	font-size: 11px;
 }
 
 #root {
 	padding: 30px;
-	margin: 0px;
 	min-height: 100vh;
 }
 

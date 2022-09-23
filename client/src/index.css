@@ -1,0 +1,18 @@
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+body,
+html {
+	font-family: "Roboto Mono", monospace;
+	min-height: 100vh;
+}
+
+@font-face {
+	font-family: "Roboto Mono", monospace;
+	src: local("RobotoMono-VariableFont_wght"),
+		url("./fonts/RobotoMono-VariableFont_wght.ttf") format("truetype");
+	font-weight: normal;
+}

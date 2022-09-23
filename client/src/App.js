@@ -17,6 +17,42 @@ import Description from "./components/Description";
 
 ChartJS.register(LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
 
+const options = {
+	scales: {
+		x: {
+			beginAtZero: true,
+		},
+		y: {
+			beginAtZero: true,
+		},
+	},
+	plugins: {
+		title: {
+			display: true,
+			text: "Binary Classification Example",
+			font: {
+				family: "'Roboto Mono', monospace",
+				size: 18,
+				weight: "400",
+			},
+		},
+		legend: {
+			display: true,
+			labels: {
+				usePointStyle: true,
+				font: {
+					family: "'Roboto Mono', monospace",
+				},
+			},
+		},
+		tooltip: {
+			usePointStyle: true,
+		},
+	},
+	maintainAspectRatio: false,
+	responsive: true,
+};
+
 const errorMessageTypes = {
 	missingNumbers: "Missing number(s) for point values",
 	labelRequirement: "Model requires at least 1 labeld and 1 unlabeld point",
@@ -103,7 +139,7 @@ function App() {
 			}).then((res) => {
 				if (res.ok) {
 					res.json().then((data) => {
-						console.log(data);
+						// console.log(data);
 						setSVCResults({
 							...SVCresults,
 							fitStatus: data.fitStatus,
@@ -122,34 +158,7 @@ function App() {
 		}
 	};
 
-	const options = {
-		scales: {
-			x: {
-				beginAtZero: true,
-			},
-			y: {
-				beginAtZero: true,
-			},
-		},
-		plugins: {
-			title: {
-				display: true,
-				text: "Binary Classification Example",
-			},
-			legend: {
-				display: true,
-				labels: {
-					usePointStyle: true,
-				},
-			},
-			tooltip: {
-				usePointStyle: true,
-			},
-		},
-		maintainAspectRatio: false,
-		responsive: true,
-	};
-
+	// grouping data based on label and SV status
 	const labeledSVs = [];
 	const labeledNonSVs = [];
 	const unLabeledSVs = [];
@@ -170,57 +179,68 @@ function App() {
 			{
 				label: "Decision Boundary",
 				data: SVCresults.dbEndpoints,
-				backgroundColor: "rgba(0, 0, 255, 1)",
-				borderColor: "rgba(0, 0, 255, 1)",
+				backgroundColor: "rgba(9, 4, 70, 1)",
+				borderColor: "rgba(9, 4, 70, 1)",
 				showLine: true,
 			},
 			{
-				label: "Upper Margin",
+				label: "Labeled Margin",
 				data: SVCresults.margins[0],
-				borderColor: "rgba(0, 255, 0, 0.25)",
-				backgroundColor: "rgba(0, 255, 0, 0.25)",
+				borderColor: "rgba(254, 185, 95, 0.25)",
+				backgroundColor: "rgba(254, 185, 95, 0.25)",
 				showLine: true,
 			},
 			{
-				label: "Lower Margin",
+				label: "Unlabeled Margin",
 				data: SVCresults.margins[1],
-				borderColor: "rgba(255, 0, 0, 0.25)",
-				backgroundColor: "rgba(255, 0, 0, 0.25)",
+				borderColor: "rgba(120, 111, 82, 0.25)",
+				backgroundColor: "rgba(120, 111, 82, 0.25)",
 				showLine: true,
 			},
 			{
 				label: "Labeled Non-SVs",
 				data: labeledNonSVs,
-				borderColor: "rgba(0, 255, 0, 1)",
+				borderColor: "rgba(254, 185, 95, 1)",
 				backgroundColor: "rgba(0, 0, 0, 0)",
 			},
 			{
 				label: "Unlabeled Non-SVs",
 				data: unLabeledNonSVs,
-				borderColor: "rgba(255, 0, 0, 1)",
+				borderColor: "rgba(120, 111, 82, 1)",
 				backgroundColor: "rgba(0, 0, 0, 0)",
 			},
 			{
 				label: "Labeled SVs",
 				data: labeledSVs,
-				borderColor: "rgba(0, 255, 0, 1)",
-				backgroundColor: "rgba(0, 255, 0, 1)",
+				borderColor: "rgba(254, 185, 95, 1)",
+				backgroundColor: "rgba(254, 185, 95, 1)",
 			},
 			{
 				label: "Unlabeled SVs",
 				data: unLabeledSVs,
-				borderColor: "rgba(255, 0, 0, 1)",
-				backgroundColor: "rgba(255, 0, 0, 1)",
+				borderColor: "rgba(120, 111, 82, 1)",
+				backgroundColor: "rgba(120, 111, 82, 1)",
 			},
 		],
 	};
 
-	console.log(modelData);
+	// adjusting margin between legend and chart
+	const legendMargin = {
+		beforeInit(chart, legend, options) {
+			const fitValue = chart.legend.fit;
+			chart.legend.fit = function fit() {
+				fitValue.bind(chart.legend)();
+				return (this.height += 20);
+			};
+		},
+	};
+
+	const plugins = [legendMargin];
 
 	return (
 		<>
-			<div className="chart">
-				<Scatter options={options} data={data} />
+			<div className="chart-container">
+				<Scatter options={options} data={data} plugins={plugins} />
 			</div>
 			{SVCresults.fitStatus === 0 && (
 				<Description
