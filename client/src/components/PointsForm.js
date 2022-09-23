@@ -8,7 +8,6 @@ function PointsForm({
 	errorMsgs,
 }) {
 	return (
-		// <div className="form-container">
 		<form>
 			<div className="column-container">
 				<div className="column">
@@ -73,7 +72,6 @@ function PointsForm({
 				Submit
 			</button>
 		</form>
-		// </div>
 	);
 }
 

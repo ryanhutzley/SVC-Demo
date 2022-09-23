@@ -14,6 +14,7 @@ import { Scatter } from "react-chartjs-2";
 import "./App.css";
 import PointsForm from "./components/PointsForm";
 import Description from "./components/Description";
+import Footer from "./components/Footer";
 
 ChartJS.register(LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
 
@@ -139,7 +140,7 @@ function App() {
 			}).then((res) => {
 				if (res.ok) {
 					res.json().then((data) => {
-						// console.log(data);
+						console.log(data);
 						setSVCResults({
 							...SVCresults,
 							fitStatus: data.fitStatus,
@@ -237,8 +238,10 @@ function App() {
 
 	const plugins = [legendMargin];
 
+	console.log(modelData);
+
 	return (
-		<>
+		<div className="content-wrap">
 			<div className="chart-container">
 				<Scatter options={options} data={data} plugins={plugins} />
 			</div>
@@ -258,7 +261,8 @@ function App() {
 				errorStates={errorStates}
 				errorMsgs={errorMsgs}
 			/>
-		</>
+			<Footer />
+		</div>
 	);
 }
 
