@@ -70,9 +70,8 @@ This starts the server on `http://localhost:8000`
 
 1. Choose x and y values for at least two points. (The model requires at least 1 labeled and 1 unlabeled point to generate a response)
 2. Hit `Submit`!
-3. Be AMAZED! 😮
-4. Take a look at 1) the chart -- the legend describes what the different colors and shadings represent (SV = [Support Vector](https://towardsdatascience.com/support-vector-machine-introduction-to-machine-learning-algorithms-934a444fca47#:~:text=Support%20vectors%20are%20data%20points,help%20us%20build%20our%20SVM.)), and 2) the `SVC Metrics` section -- this contains "Fit Status", "Model Accuracy", and "Margin Value" information.
-5. Play around with the demo! (add points, remove points, or change points to see how the SVM responds)
+3. Take a look at 1) the chart -- the legend describes what the different colors and shadings represent (SV = [Support Vector](https://towardsdatascience.com/support-vector-machine-introduction-to-machine-learning-algorithms-934a444fca47#:~:text=Support%20vectors%20are%20data%20points,help%20us%20build%20our%20SVM.)), and 2) the `SVC Metrics` section -- this contains "Fit Status", "Model Accuracy", and "Margin Value" information.
+4. Play around with the demo! (add points, remove points, or change points to see how the SVM responds)
 
 # Resources & Credits
 
